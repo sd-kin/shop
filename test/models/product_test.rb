@@ -60,13 +60,20 @@ end
 
 test 'title shold be uniq' do
 
-product = Product.new @product_data
-product.title = products(:ruby).title
+	product = Product.new @product_data
+	product.title = products(:ruby).title
 
-assert product.invalid?, 'products whith nonunique titles should be invalid'
+	assert product.invalid?, 'products whith nonunique titles should be invalid'
 
-assert_equal ['has already been taken'], product.errors[:title], 'unexpected error message'
+	assert_equal ['has already been taken'], product.errors[:title], 'unexpected error message'
 end
 
+test 'description length should be greater then 10 characters' do
+  product = Product.new @product_data
+  product.description = 'hi'
+
+  assert product.invalid?, 'product description less then 10 char length shold not validate'
+
+end
 
 end #end 0f tests
