@@ -5,6 +5,10 @@ class Product < ActiveRecord::Base
 	validates :description, length: {minimum: 10}, allow_blank: true
 	validates :image_url, allow_blank: true, format: {
 		with: %r{\.(jpg|jpeg|gif|png)\Z}i,
-		message: 'URL должен указывать на gif, jpeg или png'
+		message: 'URL shold ended by gif, jpeg or png file'
 	}
+
+	def self.latest
+		Product.order(:updated_at).last
+	end
 end
