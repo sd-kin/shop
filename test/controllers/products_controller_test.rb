@@ -50,4 +50,13 @@ class ProductsControllerTest < ActionController::TestCase
 
     assert_redirected_to products_path
   end
+
+  test "shold get index" do
+    get :index
+    assert_response :success
+    assert_select 'table', 1
+    assert_select '#banner', 1
+  end
+
+
 end
