@@ -15,11 +15,14 @@
 
 <div id="columns">
 	<div id="side">
+		<div id = 'cart'>
+		<%= render @cart if @cart %>
+		</div>
 		<ul>
-			<li><a href="http://www....">Home</a></li>
+			<li><%= link_to 'Shop', store_index_path %></li>
 			<li><a href="http://www..../faq">Questions</a></li>
 			<li><a href="http://www..../news">News</a></li>
-			<li><a href="http://www..../contact">Contact</a></li>
+			<li><%= link_to 'Cart', cart_path(@cart) if @cart %></li>
 		</ul>
 	</div>
 	<div id="main"> 
