@@ -3,7 +3,7 @@ class LineItemsController < ApplicationController
   include UseCount
 
   before_action :reset_count, only: [:create]
-  before_action :set_cart, only: [:create, :destroy]
+  before_action :set_cart, only: [:create, :destroy, :increase, :decrease]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy, :increase, :decrease]
 
   # GET /line_items
@@ -73,29 +73,32 @@ class LineItemsController < ApplicationController
   end
 
   def increase
+  @line_item.quantity+=1
+  @line_item.save
 
     respond_to do |format|
+
       format.html {
-                    @line_item.quantity+=1
-                    @line_item.save
                     redirect_to store_url
                   }
       format.js
+      format.json { head :no_content }
     
 
     end
   end
 
   def decrease
-    
+  @line_item.quantity-=1
+  @line_item.save
+  @line_item.destroy if @line_item.quantity == 0 
+
     respond_to do |format|
       format.html {
-                    @line_item.quantity-=1
-                    @line_item.save
-                    @line_item.destroy if @line_item.quantity == 0
                     redirect_to store_url
                   }
       format.js
+      format.json { head :no_content }
     end
   end
 

@@ -8,16 +8,6 @@ class LineItem < ActiveRecord::Base
 
   end
 
-  def plus_one
-
-  	quantity+=1 if quantity
-
-  end 
-
-  def minus_one
-
-  	quantity+=1 if quantity
-  	
-  end
+  
   
 end
