@@ -6,6 +6,18 @@ class LineItem < ActiveRecord::Base
   	
   	product.price * quantity 
 
+  end
+
+  def plus_one
+
+  	quantity+=1 if quantity
+
   end 
+
+  def minus_one
+
+  	quantity+=1 if quantity
+  	
+  end
   
 end

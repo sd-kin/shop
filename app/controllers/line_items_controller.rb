@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
 
   before_action :reset_count, only: [:create]
   before_action :set_cart, only: [:create, :destroy]
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_line_item, only: [:show, :edit, :update, :destroy, :increase, :decrease]
 
   # GET /line_items
   # GET /line_items.json
@@ -24,6 +24,7 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/1/edit
   def edit
+
   end
 
   # POST /line_items
@@ -68,6 +69,33 @@ class LineItemsController < ApplicationController
       format.html { redirect_to store_url }
       format.js
       format.json { head :no_content }
+    end
+  end
+
+  def increase
+
+    respond_to do |format|
+      format.html {
+                    @line_item.quantity+=1
+                    @line_item.save
+                    redirect_to store_url
+                  }
+      format.js
+    
+
+    end
+  end
+
+  def decrease
+    
+    respond_to do |format|
+      format.html {
+                    @line_item.quantity-=1
+                    @line_item.save
+                    @line_item.destroy if @line_item.quantity == 0
+                    redirect_to store_url
+                  }
+      format.js
     end
   end
 
