@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016164423) do
+ActiveRecord::Schema.define(version: 20151023210536) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at"
@@ -24,15 +24,26 @@ ActiveRecord::Schema.define(version: 20151016164423) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "quantity",   default: 0
+    t.integer  "order_id"
   end
 
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id"
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id"
 
+  create_table "orders", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "email"
+    t.string   "pay_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",       limit: 255
     t.text     "description"
-    t.string   "image_url"
-    t.decimal  "price",       precision: 8, scale: 2
+    t.string   "image_url",   limit: 255
+    t.decimal  "price",                   precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
