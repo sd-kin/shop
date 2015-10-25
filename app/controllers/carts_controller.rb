@@ -63,10 +63,18 @@ class CartsController < ApplicationController
 
     respond_to do |format|
 
+      if session[:order_set]
 
-        format.html { redirect_to store_url }
+        format.html {redirect_to store_url}
+
+      else
+
+
+        #format.html { redirect_to store_url }
         format.js 
         format.json { head :no_content }
+
+      end
 
     end
 

@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
     redirect_to store_url, notice: 'Your cart is empty' if @cart.line_items.empty?
 
-    session[:order_set] = 11
+    session[:order_set] = true
     @order = Order.new
     
 

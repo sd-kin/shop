@@ -11,9 +11,11 @@
 
 </table>
 
- <%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' }, remote: true if cart.line_items.any? %> 
+ 
  <% unless session[:order_set] %>
+ <%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
  <%= button_to "Checkout ", new_order_path, method: :get, disabled: @current_page %>
  <% else %>
+ <%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' } %>
  <%= button_to 'Back to store', store_url, method: :get %>
  <% end %>
