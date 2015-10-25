@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
+
   # GET /orders
   # GET /orders.json
   def index
@@ -21,7 +22,10 @@ class OrdersController < ApplicationController
 
     redirect_to store_url, notice: 'Your cart is empty' if @cart.line_items.empty?
 
+    session[:order_set] = 11
     @order = Order.new
+    
+
   end
 
   # GET /orders/1/edit
@@ -32,7 +36,8 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    session[:order_set] = nil
+    @cart.destroy
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }

@@ -1,8 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  include UseCount
-
-  before_action :reset_count, only: [:create]
+  
   before_action :set_cart, only: [:create, :destroy, :increase, :decrease]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy, :increase, :decrease]
 
@@ -73,15 +71,14 @@ class LineItemsController < ApplicationController
   end
 
   def increase
+ 
   @line_item.quantity+=1
   @line_item.save
-
+  
     respond_to do |format|
 
-      format.html {
-                    redirect_to store_url
-                  }
-      format.js
+      format.html { redirect_to store_url }
+      format.js 
       format.json { head :no_content }
     
 
@@ -92,11 +89,10 @@ class LineItemsController < ApplicationController
   @line_item.quantity-=1
   @line_item.save
   @line_item.destroy if @line_item.quantity == 0 
+  
 
     respond_to do |format|
-      format.html {
-                    redirect_to store_url
-                  }
+      format.html { redirect_to store_url }
       format.js
       format.json { head :no_content }
     end
