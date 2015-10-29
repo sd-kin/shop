@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 20151028214802) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "title",       limit: 255
+    t.string   "title"
     t.text     "description"
-    t.string   "image_url",   limit: 255
-    t.decimal  "price",                   precision: 8, scale: 2
+    t.string   "image_url"
+    t.decimal  "price",       precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

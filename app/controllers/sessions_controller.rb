@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_action :authorize
+  before_action :set_admin, only: :new
   def new
   end
 
@@ -20,4 +23,14 @@ class SessionsController < ApplicationController
   	 redirect_to store_url, notice: "Bye!" 
 
   end
+
+  private
+
+  def set_admin
+
+    User.create(:name => 'admin', :password => 'admin', :password_confirmation => 'admin') if User.all.empty?
+
+  end
+
+
 end
