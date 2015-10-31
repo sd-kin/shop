@@ -21,6 +21,10 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <%= edit_confirmation @user, class: 'field' do %>
+    <%= f.label :current_password_confirmation %>
+    <%= f.password_field :current_password_confirmation %>
+  <% end %>
   <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>
@@ -32,6 +36,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
 
 </fieldset>
