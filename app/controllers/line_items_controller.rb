@@ -79,7 +79,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
 
       format.html { redirect_to store_url }
-      format.js 
+      format.js { @current_item = @line_item }
       format.json { head :no_content }
     
 
@@ -94,7 +94,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to store_url }
-      format.js
+      format.js { @current_item = @line_item }
       format.json { head :no_content }
     end
   end

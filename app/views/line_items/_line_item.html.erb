@@ -1,8 +1,8 @@
-<tr  <%= 'id=current_item' if line_item == @current_item %>>
-	<td><%= button_to '-', decrease_line_item_path(line_item), method: :put, remote: true %></td>
+<tr   <%= 'id=current_item' if line_item == @current_item %>>
+	<td><%= button_to '-', decrease_line_item_path(line_item), method: :put, remote: true if line_item.quantity > 1 %></td>
 	<td><%= line_item.quantity %></td>
 	<td><%= button_to '+', increase_line_item_path(line_item), method: :put, remote: true %></td>
 	<td><%= line_item.product.title %></td>
 	<td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
-	<td><%= button_to 'cancel', line_item, remote: true, method: :delete if line_item.quantity > 1 %></td>
+	<td><%= button_to 'cancel', line_item, remote: true, method: :delete  %></td>
 </tr> 

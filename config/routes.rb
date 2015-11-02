@@ -1,6 +1,8 @@
 Demo::Application.routes.draw do
  
  get 'admin' => 'admin#index'
+ get "store/index"
+
 
  controller :sessions do
   
@@ -24,9 +26,9 @@ Demo::Application.routes.draw do
     
   end
 
-  resources :carts
+  resources :carts, except: [:create, :update ]
 
-  get "store/index"
+ 
     
   resources :products do
 
