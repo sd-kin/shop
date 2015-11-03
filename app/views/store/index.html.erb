@@ -2,35 +2,24 @@
 	<p id="notice"><%= notice %></p>
 <% end %>
 
-<h3>Кирпичи в ассортименте:</h3>
-
 <% cache ['store', Product.latest] do %>
 	<% @products.each do |product| %>
 		<% cache ['entry', product] do %>
-		<div class="media">
-  			<div class="media-left media-middle">
-				<%= image_tag(product.image_url) %>
-			</div>
-			<div class="media-body">
-						<h3><%= product.title %></h3>
-			</div>
 
-			<div class="media-body">
-				    	<%= sanitize(product.description) %>  
-				</div>
 
-				<div class="media-body">
-					
-						<%= number_to_currency(product.price) %>
-					</div>
-					<div class = "col-md-2 col-md-offset-2">
-						<%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %> 
-					</div>
-					
-				
-		    </div>
-		    
-		     
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+     <%= image_tag(product.image_url) %>
+      <div class="caption">
+        <h3><%= product.title %></h3>
+        <p><%= sanitize(product.description) %> </p>
+        <p><%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %> </p>
+      </div>
+    </div>
+  </div>
+
+
 		    
 		<% end %>
 	<% end %> 
